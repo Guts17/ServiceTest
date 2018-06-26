@@ -34,6 +34,11 @@
             android:text="获取列表"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/bt_display"
+            android:text="display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
     <ListView
         android:id="@+id/lv_pics"

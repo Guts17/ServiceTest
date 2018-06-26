@@ -56,7 +56,7 @@ public class MainActivity extends Activity {
                     //tv_hello.setText(result);
                     arr_pics = result.split("#");
                     for(String str:arr_pics){
-                        list_pics.add("http://10.13.3.169:8080/Test/" + str);
+                        list_pics.add("http://192.168.1.102:8280/Test/" + str);
                     }
                     adapter_pics.notifyDataSetChanged();
                     break;
@@ -151,7 +151,7 @@ public class MainActivity extends Activity {
     public void execHelloService(String userName) {
         String nameSpace = "http://ws.apache.org/axis2";
         String methodName = "sayHello";
-        String endPoint = "http://10.13.3.169:8080/axis2/services/HelloWebService";
+        String endPoint = getString(R.string.tomcat_server) + "axis2/services/HelloWebService";
         String soapAction = "http://ws.apache.org/axis2/sayHello";
         SoapObject request = new SoapObject(nameSpace, methodName);
         request.addProperty("name", userName);
@@ -186,7 +186,7 @@ public class MainActivity extends Activity {
     public void uploadFile(String input,String filename) {
         String nameSpace = "http://ws.apache.org/axis2";
         String methodName = "uploadFile";
-        String endPoint = "http://10.13.3.169:8080/axis2/services/UploadFileWebService";
+        String endPoint = getString(R.string.tomcat_server) + "axis2/services/UploadFileWebService";
         String soapAction = "http://ws.apache.org/axis2/uploadFile";
         SoapObject request = new SoapObject(nameSpace, methodName);
         request.addProperty("input", input);
@@ -221,7 +221,7 @@ public class MainActivity extends Activity {
     public void getFilesList() {
         String nameSpace = "http://ws.apache.org/axis2";
         String methodName = "getFileLists";
-        String endPoint = "http://10.13.3.169:8080/axis2/services/GetFileLists";
+        String endPoint = getString(R.string.tomcat_server) + "axis2/services/GetFileLists";
         String soapAction = "http://ws.apache.org/axis2/getFileLists";
         SoapObject request = new SoapObject(nameSpace, methodName);
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);

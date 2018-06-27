@@ -31,6 +31,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import Adapter.GlideImageAdapter;
+
 public class MainActivity extends Activity {
 
     private TextView tv_hello;
@@ -39,6 +41,7 @@ public class MainActivity extends Activity {
     private Button bt_upload;
     private Button bt_getlist;
     private Button bt_display;
+    private Button bt_glide;
     private ListView lv_pics;
     private String[] arr_pics;
     private ArrayList<String> list_pics = new ArrayList<>();
@@ -58,7 +61,7 @@ public class MainActivity extends Activity {
                     //tv_hello.setText(result);
                     arr_pics = result.split("#");
                     for(String str:arr_pics){
-                        list_pics.add("http://10.13.3.169:8080/Test/" + str);
+                        list_pics.add("http://192.168.1.102:8280/Test/" + str);
                     }
                     adapter_pics.notifyDataSetChanged();
                     break;
@@ -75,10 +78,17 @@ public class MainActivity extends Activity {
         bt_upload = (Button) findViewById(R.id.bt_upload);
         bt_getlist= (Button) findViewById(R.id.bt_getlist);
         bt_display = (Button) findViewById(R.id.bt_display);
+        bt_glide = (Button) findViewById(R.id.bt_glide);
         lv_pics = (ListView) findViewById(R.id.lv_pics);
         adapter_pics = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list_pics);
         lv_pics.setAdapter(adapter_pics);
-        //iv_img.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.smzx));
+        bt_glide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,GlideloadActivity.class);
+                startActivity(intent);
+            }
+        });
         bt_display.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

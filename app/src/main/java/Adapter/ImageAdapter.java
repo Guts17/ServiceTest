@@ -25,6 +25,8 @@ import Interface.ImageLoaderListener;
 import Model.ImageBean;
 import Utils.ImageLoader;
 
+import static com.lsq.com.servicetest.R.drawable.smzx;
+
 
 public class ImageAdapter extends BaseAdapter {
 
@@ -38,8 +40,10 @@ public class ImageAdapter extends BaseAdapter {
         }
 
         @Override
-        public void onSuccess(Bitmap bitmap) {
-
+        public void onSuccess(ImageView imageView,Bitmap bitmap,String url) {
+            if(url.equals(imageView.getTag()) && imageView.getTag() != null){
+                imageView.setImageBitmap(bitmap);
+            }
         }
 
         @Override
@@ -107,16 +111,16 @@ public class ImageAdapter extends BaseAdapter {
             view = View.inflate(mContext,R.layout.item_image,null);
             viewHolder = new ViewHolder(view);
             view.setTag(viewHolder);
-            viewHolder.iv_image.setTag(imagesList.get(i).getImgUrl());
+
         }else {
             viewHolder = (ViewHolder) view.getTag();
         }
-        //viewHolder.iv_image.setImageBitmap(null);
-        ImageBean a = imagesList.get(i);
-        imageLoader = new ImageLoader(listener);
-        imageLoader.execute(imagesList.get(i).getImgUrl());
-        //requestPic(imagesList.get(i).getImgUrl(),viewHolder);
+        viewHolder.iv_image.setTag(imagesList.get(i).getImgUrl());
+        viewHolder.iv_image .setImageResource(R.drawable.smzx);
         viewHolder.tv_imgname.setText(imagesList.get(i).getImgName());
+        imageLoader = new ImageLoader(listener);
+        imageLoader.execute(viewHolder.iv_image);
+        //requestPic(imagesList.get(i).getImgUrl(),viewHolder);
         return view;
     }
 

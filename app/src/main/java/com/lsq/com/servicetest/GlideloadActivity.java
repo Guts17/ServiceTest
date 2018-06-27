@@ -4,9 +4,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import org.ksoap2.SoapEnvelope;
@@ -16,41 +16,42 @@ import org.ksoap2.transport.HttpTransportSE;
 
 import java.util.ArrayList;
 
-import Adapter.ImageAdapter;
+import Adapter.GlideImageAdapter;
 import Model.ImageBean;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-public class ShowImagesActivity extends AppCompatActivity {
+public class GlideloadActivity extends AppCompatActivity {
 
-    private RecyclerView rv_images;
-    private ListView lv_images;
-    private ImageAdapter imageAdapter;
-    private ArrayList<ImageBean> list_pics = new ArrayList<>();
+    @BindView(R.id.rv_glideimgs) RecyclerView rv_glideimgs;
+    private ArrayList<ImageBean> imgList = new ArrayList<>();
+    private GlideImageAdapter glideImageAdapter;
+
     private Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what){
                 case 1:
-                    String[] arr_pics = msg.getData().getString("result").split("#");
-                    for(String str:arr_pics){
-                        list_pics.add(new ImageBean(str,"http://192.168.1.102:8280/Test/" + str,"",""));
-//                        list_pics.add("http://192.168.1.102:8280/Test/" + str);
+                    String[] arr = msg.getData().getString("result").split("#");
+                    for(String str : arr){
+                        ImageBean imageBean = new ImageBean(str,"http://192.168.1.102:8280/Test/" + str,"","");
+                        imgList.add(imageBean);
                     }
-                    imageAdapter.notifyDataSetChanged();
+                    glideImageAdapter.notifyDataSetChanged();
                     break;
             }
         }
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_showimages);
-
-        lv_images = (ListView) findViewById(R.id.lv_images);
-        //rv_images = (RecyclerView) findViewById(R.id.rv_images);
-        imageAdapter = new ImageAdapter(ShowImagesActivity.this,list_pics);
-        //rv_images.setAdapter(imageAdapter);
-        lv_images.setAdapter(imageAdapter);
-
+        setContentView(R.layout.activity_glideload);
+        ButterKnife.bind(this);
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        rv_glideimgs.setLayoutManager(manager);
+        glideImageAdapter = new GlideImageAdapter(this,imgList);
+        rv_glideimgs.setAdapter(glideImageAdapter);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -84,11 +85,12 @@ public class ShowImagesActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(ShowImagesActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(GlideloadActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
                 }
             });
             Log.d("Test",e.getMessage());
             e.printStackTrace();
         }
     }
+
 }

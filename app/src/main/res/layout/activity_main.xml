@@ -22,26 +22,37 @@
         <Button
             android:id="@+id/bt_hello"
             android:textSize="10sp"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="hello"/>
         <Button
             android:id="@+id/bt_upload"
             android:textSize="10sp"
             android:text="Upload"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content" />
         <Button
             android:id="@+id/bt_getlist"
             android:textSize="10sp"
             android:text="getlist"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content" />
         <Button
             android:id="@+id/bt_display"
             android:textSize="10sp"
             android:text="display"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/bt_glide"
+            android:text="GlideLoad"
+            android:textSize="10sp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content" />
     </LinearLayout>
     <ListView

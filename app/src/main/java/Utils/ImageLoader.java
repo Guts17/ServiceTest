@@ -3,6 +3,7 @@ package Utils;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.widget.ImageView;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -14,9 +15,11 @@ import Interface.ImageLoaderListener;
  * Created by Administrator on 2018-06-27.
  */
 
-public class ImageLoader extends AsyncTask<String,Integer,Bitmap>{
+public class ImageLoader extends AsyncTask<ImageView,Integer,Bitmap>{
 
     private ImageLoaderListener listener;
+    private ImageView imageView;
+    private String url;
 
     public ImageLoader(ImageLoaderListener listener) {
         this.listener = listener;
@@ -28,10 +31,12 @@ public class ImageLoader extends AsyncTask<String,Integer,Bitmap>{
     }
 
     @Override
-    protected Bitmap doInBackground(String... params) {
+    protected Bitmap doInBackground(ImageView... params) {
+        this.imageView = params[0];
+        this.url = params[0].getTag().toString();
         Bitmap bitmap = null;
         try {
-            URL url = new URL(params[0]);
+            URL url = new URL(params[0].getTag().toString());
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             connection.setReadTimeout(8000);
@@ -51,6 +56,6 @@ public class ImageLoader extends AsyncTask<String,Integer,Bitmap>{
 
     @Override
     protected void onPostExecute(Bitmap bitmap) {
-        listener.onSuccess(bitmap);
+        listener.onSuccess(imageView,bitmap,url);
     }
 }

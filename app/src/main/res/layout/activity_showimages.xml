@@ -5,6 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ShowImagesActivity">
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/rv_images"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
 
+    <!--</android.support.v7.widget.RecyclerView>-->
+
+    <ListView
+        android:id="@+id/lv_images"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
 
 </LinearLayout>

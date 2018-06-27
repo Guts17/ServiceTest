@@ -6,6 +6,13 @@ public class ImageBean {
     private String imgDesc;
     private String imgDetail;
 
+    public ImageBean(String imgName, String imgUrl, String imgDesc, String imgDetail) {
+        this.imgName = imgName;
+        this.imgUrl = imgUrl;
+        this.imgDesc = imgDesc;
+        this.imgDetail = imgDetail;
+    }
+
     public String getImgName() {
         return imgName;
     }

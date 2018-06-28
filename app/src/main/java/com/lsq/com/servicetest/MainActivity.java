@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,11 +26,9 @@ import org.ksoap2.transport.HttpTransportSE;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-import Adapter.GlideImageAdapter;
 
 public class MainActivity extends Activity {
 
@@ -42,6 +39,7 @@ public class MainActivity extends Activity {
     private Button bt_getlist;
     private Button bt_display;
     private Button bt_glide;
+    private Button bt_download;
     private ListView lv_pics;
     private String[] arr_pics;
     private ArrayList<String> list_pics = new ArrayList<>();
@@ -61,7 +59,8 @@ public class MainActivity extends Activity {
                     //tv_hello.setText(result);
                     arr_pics = result.split("#");
                     for(String str:arr_pics){
-                        list_pics.add("http://192.168.1.102:8280/Test/" + str);
+                        list_pics.add("http://10.13.3.169:8080/Test/" + str);
+//                        list_pics.add("http://192.168.1.102:8280/Test/" + str);
                     }
                     adapter_pics.notifyDataSetChanged();
                     break;
@@ -79,9 +78,17 @@ public class MainActivity extends Activity {
         bt_getlist= (Button) findViewById(R.id.bt_getlist);
         bt_display = (Button) findViewById(R.id.bt_display);
         bt_glide = (Button) findViewById(R.id.bt_glide);
+        bt_download = (Button) findViewById(R.id.bt_download);
         lv_pics = (ListView) findViewById(R.id.lv_pics);
         adapter_pics = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list_pics);
         lv_pics.setAdapter(adapter_pics);
+        bt_download.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,DownloadActivity.class);
+                startActivity(intent);
+            }
+        });
         bt_glide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

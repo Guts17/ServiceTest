@@ -1,4 +1,4 @@
-package Adapter;
+package adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -21,11 +21,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-import Interface.ImageLoaderListener;
-import Model.ImageBean;
-import Utils.ImageLoader;
-
-import static com.lsq.com.servicetest.R.drawable.smzx;
+import myinterface.ImageLoaderListener;
+import model.ImageBean;
+import utils.ImageLoader;
 
 
 public class ImageAdapter extends BaseAdapter {

@@ -1,4 +1,4 @@
-package Utils;
+package utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,7 +9,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import Interface.ImageLoaderListener;
+import myinterface.ImageLoaderListener;
 
 /**
  * Created by Administrator on 2018-06-27.

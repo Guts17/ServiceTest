@@ -4,7 +4,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
@@ -16,8 +16,8 @@ import org.ksoap2.transport.HttpTransportSE;
 
 import java.util.ArrayList;
 
-import Adapter.GlideImageAdapter;
-import Model.ImageBean;
+import adapter.GlideImageAdapter;
+import model.ImageBean;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -34,7 +34,8 @@ public class GlideloadActivity extends AppCompatActivity {
                 case 1:
                     String[] arr = msg.getData().getString("result").split("#");
                     for(String str : arr){
-                        ImageBean imageBean = new ImageBean(str,"http://192.168.1.102:8280/Test/" + str,"","");
+                        ImageBean imageBean = new ImageBean(str,"http://10.13.3.169:8080/Test/" + str,"","");
+//                        ImageBean imageBean = new ImageBean(str,"http://192.168.1.102:8280/Test/" + str,"","");
                         imgList.add(imageBean);
                     }
                     glideImageAdapter.notifyDataSetChanged();
@@ -48,7 +49,8 @@ public class GlideloadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_glideload);
         ButterKnife.bind(this);
-        LinearLayoutManager manager = new LinearLayoutManager(this);
+        GridLayoutManager manager = new GridLayoutManager(this,2);
+//        LinearLayoutManager manager = new LinearLayoutManager(this);
         rv_glideimgs.setLayoutManager(manager);
         glideImageAdapter = new GlideImageAdapter(this,imgList);
         rv_glideimgs.setAdapter(glideImageAdapter);

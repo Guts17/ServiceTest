@@ -16,8 +16,8 @@ import org.ksoap2.transport.HttpTransportSE;
 
 import java.util.ArrayList;
 
-import Adapter.ImageAdapter;
-import Model.ImageBean;
+import adapter.ImageAdapter;
+import model.ImageBean;
 
 public class ShowImagesActivity extends AppCompatActivity {
 
@@ -32,7 +32,7 @@ public class ShowImagesActivity extends AppCompatActivity {
                 case 1:
                     String[] arr_pics = msg.getData().getString("result").split("#");
                     for(String str:arr_pics){
-                        list_pics.add(new ImageBean(str,"http://192.168.1.102:8280/Test/" + str,"",""));
+                        list_pics.add(new ImageBean(str,"http://10.13.3.169:8080/Test/" + str,"",""));
 //                        list_pics.add("http://192.168.1.102:8280/Test/" + str);
                     }
                     imageAdapter.notifyDataSetChanged();

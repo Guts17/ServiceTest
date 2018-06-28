@@ -1,4 +1,4 @@
-package Adapter;
+package adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -13,7 +13,7 @@ import com.lsq.com.servicetest.R;
 
 import java.util.List;
 
-import Model.ImageBean;
+import model.ImageBean;
 
 public class GlideImageAdapter extends RecyclerView.Adapter<GlideImageAdapter.ViewHolder> {
 

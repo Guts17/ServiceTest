@@ -61,6 +61,13 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/bt_volleytest"
+            android:text="Volley"
+            android:textSize="10sp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
     </LinearLayout>
     <ListView
         android:id="@+id/lv_pics"

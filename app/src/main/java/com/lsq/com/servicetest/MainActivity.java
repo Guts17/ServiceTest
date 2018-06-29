@@ -29,6 +29,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 
 public class MainActivity extends Activity {
 
@@ -42,6 +46,12 @@ public class MainActivity extends Activity {
     private Button bt_download;
     private ListView lv_pics;
     private String[] arr_pics;
+    @BindView(R.id.bt_volleytest) Button bt_volleytest;
+    @OnClick (R.id.bt_volleytest)
+    public void volleyTest(){
+        Intent intent = new Intent(this,VolleyTestActivity.class);
+        startActivity(intent);
+    }
     private ArrayList<String> list_pics = new ArrayList<>();
     private ArrayAdapter<String> adapter_pics;
     private Handler handler = new Handler(){
@@ -82,6 +92,7 @@ public class MainActivity extends Activity {
         lv_pics = (ListView) findViewById(R.id.lv_pics);
         adapter_pics = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list_pics);
         lv_pics.setAdapter(adapter_pics);
+        ButterKnife.bind(this);
         bt_download.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
